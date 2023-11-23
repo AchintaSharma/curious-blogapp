@@ -1,11 +1,9 @@
-import { IoMdMail } from "react-icons/io";
-import { IoMdUnlock } from "react-icons/io";
-import { IoLogoGoogle } from "react-icons/io5";
-import { IoEyeOffSharp } from "react-icons/io5";
+import { IoMdMail , IoMdUnlock } from "react-icons/io";
+import { IoLogoGoogle , IoEyeOffSharp } from "react-icons/io5";
 
-const SignIn = () => {
-  return (
-    <>
+
+
+const SignIn = () => (
     <div className=" max-w-screen-xl sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24  mx-auto flex justify-center flex-col py-4">
         <div className=" max-w-screen-md  py-4 px-12 mx-auto  rounded-xl border border-gray-300  shadow-lg bg-white">
           <h1 className=" font-semibold text-4xl text-center mt-8">
@@ -79,7 +77,7 @@ const SignIn = () => {
           </button>
 
           <p className=" text-center text-sm my-3">
-            Don't have an account?
+            `Dont have an account?`
             <a
               href="/login"
               className=" text-blue-500 font-bold shadow-md ml-2 hover:font-blue-900"
@@ -98,10 +96,7 @@ const SignIn = () => {
         </div> */}
 
       </div>
-
-    </>
     
   )
-}
 
 export default SignIn

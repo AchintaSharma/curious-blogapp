@@ -1,11 +1,8 @@
-import { IoMdMail } from "react-icons/io";
-import { IoMdUnlock } from "react-icons/io";
-import { IoLogoGoogle } from "react-icons/io5";
-import { IoEyeOffSharp } from "react-icons/io5";
-const SignUp = () => {
-  return (
-    <>
-      <div className=" max-w-screen-xl sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24  mx-auto flex justify-center flex-col py-4">
+import { IoMdMail , IoMdUnlock } from "react-icons/io";
+import { IoLogoGoogle , IoEyeOffSharp } from "react-icons/io5";
+
+const SignUp = () => (
+    <div className=" max-w-screen-xl sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24  mx-auto flex justify-center flex-col py-4">
         <div className=" max-w-screen-md  py-4 px-12 mx-auto  rounded-xl border border-gray-300  shadow-lg bg-white">
           <h1 className=" font-semibold text-4xl text-center mt-8">
             Join Curious
@@ -94,8 +91,6 @@ const SignUp = () => {
           </p>
         </div>
       </div>
-    </>
   );
-};
 
 export default SignUp;

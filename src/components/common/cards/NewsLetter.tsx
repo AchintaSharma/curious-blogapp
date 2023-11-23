@@ -1,7 +1,6 @@
-import PrimaryButton from "../buttons/PrimaryButton";
+import PrimaryButton from "../buttons/PrimaryButton.tsx";
 
-const NewsLetter = () => {
-  return (
+const NewsLetter = () => (
     <div className="max-w-[384px] flex flex-col gap-3 px-4 py-4  border-t-2 border-b-2 border-Zomp">
       <h2 className=" font-semibold">News Letter</h2>
       <p className=" text-sm font-medium ">
@@ -18,6 +17,5 @@ const NewsLetter = () => {
       </div>
     </div>
   );
-};
 
 export default NewsLetter;
