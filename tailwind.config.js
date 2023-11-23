@@ -11,6 +11,7 @@ export default {
         Zomp: "#359C9C",
         PurpleNavy: "#4F4D7B",
         Cultured: "#F8F7F4",
+        LightSilver: "#D6D6D6",
       },
     },
   },
