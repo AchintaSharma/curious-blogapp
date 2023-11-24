@@ -12,7 +12,11 @@ import PostPage from "./scenes/postPage/PostPage.tsx";
 
 import Home from "./scenes/Home/Home.tsx";
 import Categories from "./scenes/categories/Categories.tsx";
-import Dashboard from "./scenes/admin/components/Dashboard.tsx";
+
+// import Admin from "./scenes/admin/Admin.tsx";
+// import Dashboard from "./scenes/admin/components/Dashboard.tsx";
+// import Overview from "./scenes/admin/components/Overview.tsx";
+import Admin from "./scenes/admin/Admin.tsx";
 
 const App = () => {
   const location = useLocation();
@@ -44,10 +48,19 @@ const App = () => {
       path: "/",
       element: <Home />,
     },
+    // {
+    //   path:"/dashboard",
+    //   // eslint-disable-next-line react/no-children-prop
+    //   element: <Dashboard children={undefined} />,
+    // },
     {
-      path:"/dashboard",
-      element: <Dashboard />
+      path: "/admin",
+      element: <Admin />
     },
+    // {
+    //   path: "/overview",
+    //   element: <Overview />
+    // },
   ]);
 
   if (location.pathname === "/signup" || location.pathname === "/login") {

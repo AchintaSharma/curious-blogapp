@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   MdOutlineSaveAs,
   MdDashboard,
@@ -8,10 +9,14 @@ import { HiOutlineUsers } from "react-icons/hi";
 import { Profile1 } from "../../../assets/svgs/svg.ts";
 import { thumb1 } from "../../../assets/images/images.ts";
 
-const Dashboard = () => (
-  <div className=" max-w-screen-xl sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24  mx-auto my-8 border border-SpaceCadet">
+type DashboardProps ={
+  children: ReactNode;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({children}) => (
+  <div className=" max-w-screen-xl sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24  mx-auto my-8">
     {/* Overall grid container */}
-    <div className="grid grid-cols-12 mx-[10%] gap-4 border border-red-600">
+    <div className="grid grid-cols-12  gap-4 border">
       {/* Left overall grid col */}
       <div className="col-span-3">
         <div className="flex flex-col">
@@ -116,7 +121,7 @@ const Dashboard = () => (
       </div>
 
       {/* Right overall grid col */}
-      <div className="col-span-9 border border-Zomp">
+      <div className="col-span-9 border">
         {/* good morning card */}
         <div className="flex flex-col h-25 gap-2 px-4 py-2 bg-LightSilver rounded-lg shadow-md">
           {/* Welcome flex */}
@@ -162,7 +167,9 @@ const Dashboard = () => (
         {/* Line break */}
         <hr className="my-4 font-bold" />
         {/* Table */}
-        <div className="flex h-fit border border-Zomp">Recent Blogs</div>
+        <div className="flex h-fit">
+          {children}
+        </div>
       </div>
     </div>
   </div>
