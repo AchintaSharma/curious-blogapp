@@ -1,13 +1,12 @@
-import { Profile2 } from "../../../assets/svgs/svg"
 import { IoShareOutline } from "react-icons/io5";
+import { Profile2 } from "../../../assets/svgs/svg.ts"
 // import {format} from 'date-fns'
 
-const SmallCard = () => {
-  return (
+const SmallCard = () => (
     <div className=" max-w-[304px] px-4 py-4 bg-Zomp rounded-lg flex flex-col gap-2">
         {/* card profile, name, category */}
         <div className=" flex items-center gap-2">
-            <img src={Profile2} alt="profile image" className=" w-6 h-6 cursor-pointer" />
+            <img src={Profile2} alt="profile" className=" w-6 h-6 cursor-pointer" />
             <h4 className=" text-sm font-semibold text-white cursor-pointer">John Doe</h4>
             <h5 className="text-sm font-medium text-white cursor-pointer">React</h5>
         </div>
@@ -25,6 +24,5 @@ const SmallCard = () => {
         </div>
     </div>
   )
-}
 
 export default SmallCard

@@ -11,6 +11,8 @@ import CreateBlog from "./scenes/createBlog/CreateBlog.tsx";
 import PostPage from "./scenes/postPage/PostPage.tsx";
 
 import Home from "./scenes/Home/Home.tsx";
+import Categories from "./scenes/categories/Categories.tsx";
+import Dashboard from "./scenes/admin/components/Dashboard.tsx";
 
 const App = () => {
   const location = useLocation();
@@ -34,8 +36,17 @@ const App = () => {
       element: <PostPage />,
     },
     {
+      // path: "/post/:id",
+      path: "/categories",
+      element: <Categories />,
+    },
+    {
       path: "/",
       element: <Home />,
+    },
+    {
+      path:"/dashboard",
+      element: <Dashboard />
     },
   ]);
 

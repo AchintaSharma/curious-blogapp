@@ -139,6 +139,7 @@ const PostPage = () => (
           <div className=" flex justify-center">
             <button type="button" className=" text-Zomp text-lg font-bold"> See more</button>
           </div>
+          
         </div>
       </div>
   );
