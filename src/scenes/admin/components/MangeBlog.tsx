@@ -25,29 +25,41 @@ const MangeBlog = () => (
           <td>
             <th className="py-4 px-4 flex items-center gap-2">
               Title{" "}
-              <span>
-                <FaSort />{" "}
+              <span className=" cursor-pointer">
+                <FaSort />
               </span>
             </th>
           </td>
           <td>
             <th className="py-4 px-4 flex items-center gap-2">
-              Author <FaSort />
+              Author{" "}
+              <span className=" cursor-pointer">
+                <FaSort />
+              </span>
             </th>
           </td>
           <td>
             <th className="py-4 px-4 flex items-center gap-2">
-              Date Posted <FaSort />
+              Date Posted{" "}
+              <span className=" cursor-pointer">
+                <FaSort />
+              </span>
             </th>
           </td>
           <td>
             <th className="py-4 px-4 flex items-center gap-2">
-              Category <FaSort />
+              Category{" "}
+              <span className=" cursor-pointer">
+                <FaSort />
+              </span>
             </th>
           </td>
           <td>
             <th className="py-4 px-4 flex items-center gap-2">
-              Action <FaSort />
+              Action{" "}
+              <span className=" cursor-pointer">
+                <FaSort />
+              </span>
             </th>
           </td>
         </tr>
