@@ -20,6 +20,7 @@ import Admin from "./scenes/admin/Admin.tsx";
 import Overview from "./scenes/admin/components/Overview.tsx";
 import Dashboard from "./scenes/admin/components/Dashboard.tsx";
 import MangeBlog from "./scenes/admin/components/MangeBlog.tsx";
+import ManageUsers from "./scenes/admin/components/ManageUsers.tsx";
 
 const App = () => {
   const location = useLocation();
@@ -67,6 +68,10 @@ const App = () => {
     {
       path:"/manage-blogs",
       element: <MangeBlog />
+    },
+    {
+      path:"manage-users",
+      element: <ManageUsers />
     },
   ]);
 
