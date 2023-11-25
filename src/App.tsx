@@ -21,6 +21,7 @@ import Overview from "./scenes/admin/components/Overview.tsx";
 import Dashboard from "./scenes/admin/components/Dashboard.tsx";
 import MangeBlog from "./scenes/admin/components/MangeBlog.tsx";
 import ManageUsers from "./scenes/admin/components/ManageUsers.tsx";
+import ManageCategories from "./scenes/admin/components/ManageCategories.tsx";
 
 const App = () => {
   const location = useLocation();
@@ -72,6 +73,10 @@ const App = () => {
     {
       path:"manage-users",
       element: <ManageUsers />
+    },
+    {
+      path:"manage-category",
+      element: <ManageCategories />
     },
   ]);
 

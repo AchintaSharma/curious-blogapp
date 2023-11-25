@@ -1,7 +1,8 @@
 import Dashboard from "./components/Dashboard.tsx"
+import ManageCategories from "./components/ManageCategories.tsx"
 import ManageUsers from "./components/ManageUsers.tsx"
-// import MangeBlog from "./components/MangeBlog.tsx"
-// import Overview from "./components/Overview.tsx"
+import MangeBlog from "./components/MangeBlog.tsx"
+import Overview from "./components/Overview.tsx"
 
 
 
@@ -12,7 +13,8 @@ const Admin = () => (
       <Dashboard>
         {/* <Overview /> */}
         {/* <MangeBlog /> */}
-        <ManageUsers />
+        {/* <ManageUsers /> */}
+        <ManageCategories />
       </Dashboard>
     </div>
   )
