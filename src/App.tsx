@@ -17,6 +17,9 @@ import Categories from "./scenes/categories/Categories.tsx";
 // import Dashboard from "./scenes/admin/components/Dashboard.tsx";
 // import Overview from "./scenes/admin/components/Overview.tsx";
 import Admin from "./scenes/admin/Admin.tsx";
+import Overview from "./scenes/admin/components/Overview.tsx";
+import Dashboard from "./scenes/admin/components/Dashboard.tsx";
+import MangeBlog from "./scenes/admin/components/MangeBlog.tsx";
 
 const App = () => {
   const location = useLocation();
@@ -48,19 +51,23 @@ const App = () => {
       path: "/",
       element: <Home />,
     },
-    // {
-    //   path:"/dashboard",
-    //   // eslint-disable-next-line react/no-children-prop
-    //   element: <Dashboard children={undefined} />,
-    // },
+    {
+      path:"/dashboard",
+      // eslint-disable-next-line react/no-children-prop
+      element: <Dashboard children={undefined} />,
+    },
     {
       path: "/admin",
       element: <Admin />
     },
-    // {
-    //   path: "/overview",
-    //   element: <Overview />
-    // },
+    {
+      path: "/overview",
+      element: <Overview />
+    },
+    {
+      path:"/manage-blogs",
+      element: <MangeBlog />
+    },
   ]);
 
   if (location.pathname === "/signup" || location.pathname === "/login") {
