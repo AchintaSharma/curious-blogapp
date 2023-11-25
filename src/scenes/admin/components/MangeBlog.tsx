@@ -125,8 +125,13 @@ const MangeBlog = () => (
           </td>
         </tr>
       </tbody>
-
     </table>
+    {/* See more */}
+    <div className="flex justify-center">
+      <button type="button" className=" text-Zomp px-2 py-1 rounded-lg">
+        See more
+      </button>
+    </div>
   </div>
 );
 

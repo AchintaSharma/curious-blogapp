@@ -1,12 +1,36 @@
 import { FaSort } from "react-icons/fa";
 
 const RecentBlogs: React.FC = () => (
-  <div className=" flex flex-col gap-6">
+  <div className=" flex flex-col my-2">
     {/* heading */}
     <h2 className=" font-semibold  text-xl">Recent Blogs</h2>
-    <div className="">
+    {/* Cards section */}
+    <div>
+       {/* Total cards */}
+        <div className="flex flex-row mt-7 h-20 justify-between px-6">
+          {/* total blogs */}
+          <div className="flex flex-col items-center justify-center bg-LightSilver px-6 rounded-lg" style={{ width: "30%" }}>
+            <h3 className=" font-semibold">Total Blogs</h3>
+            <p className=" text-lg">50</p>
+          </div>
+          {/* total users */}
+          <div className="flex flex-col items-center justify-center bg-LightSilver px-6 rounded-lg" style={{ width: "30%" }}>
+            <h3 className=" font-semibold">Total Users</h3>
+            <p className=" text-lg">100</p>
+          </div>
+          {/* total categories */}
+          <div className="flex flex-col items-center justify-center bg-LightSilver px-6 rounded-lg" style={{ width: "30%" }}>
+            <h3 className=" font-semibold">Total Categories</h3>
+            <p className=" text-lg">10</p>
+          </div>
+        </div>
+    </div>
+    
+    <hr className="my-4 font-bold" />
+
+    <div>
       {/* Table starts here */}
-      <table className="w-full bg-white border border-Zomp rounded-lg overflow-hidden shadow-md">
+      <table className="w-full bg-white border border-Zomp rounded-lg overflow-hidden shadow-md my-6">
         {/* table header */}
         <thead className="bg-LightSilver text-left">
           <tr>
@@ -114,6 +138,16 @@ const RecentBlogs: React.FC = () => (
           </tr>
         </tbody>
       </table>
+      {/* See more */}
+      <div className="flex justify-center">
+        <button
+          type="button"
+          className=" text-Zomp px-2 py-1 rounded-lg"
+        >
+          See more
+        </button>
+      </div>
+
     </div>
   </div>
 );

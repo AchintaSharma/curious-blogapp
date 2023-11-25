@@ -78,7 +78,7 @@ const Dashboard: React.FC<DashboardProps> = ({children}) => (
                   type="button"
                   className="hover:text-Zomp text-sm font-medium"
                 >
-                  Manage Users
+                  Manage Blogs
                 </button>
               </div>
             </div>
@@ -112,7 +112,7 @@ const Dashboard: React.FC<DashboardProps> = ({children}) => (
                   type="button"
                   className="hover:text-Zomp text-sm font-medium"
                 >
-                  Manage Users
+                  Manage Categories
                 </button>
               </div>
             </div>
@@ -142,25 +142,6 @@ const Dashboard: React.FC<DashboardProps> = ({children}) => (
             <div>
               <img src={thumb1} alt="thumb" className=" w-fit" />
             </div>
-          </div>
-        </div>
-
-        {/* Total cards */}
-        <div className="flex flex-row mt-7 h-20 justify-between px-6">
-          {/* total blogs */}
-          <div className="flex flex-col items-center justify-center bg-LightSilver px-6 rounded-lg" style={{ width: "30%" }}>
-            <h3 className=" font-semibold">Total Blogs</h3>
-            <p className=" text-lg">50</p>
-          </div>
-          {/* total users */}
-          <div className="flex flex-col items-center justify-center bg-LightSilver px-6 rounded-lg" style={{ width: "30%" }}>
-            <h3 className=" font-semibold">Total Users</h3>
-            <p className=" text-lg">100</p>
-          </div>
-          {/* total categories */}
-          <div className="flex flex-col items-center justify-center bg-LightSilver px-6 rounded-lg" style={{ width: "30%" }}>
-            <h3 className=" font-semibold">Total Categories</h3>
-            <p className=" text-lg">10</p>
           </div>
         </div>
           
