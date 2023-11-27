@@ -15,7 +15,11 @@ const Nav = () => {
           <button type="button" onClick={() => navigate("/")}>
             <img src={CuriousLogo} className=" w-12 h-12" alt="Curious Logo" />
           </button>
-          <h1 className=" text-Zomp font-semibold text-2xl ml-2">Curious</h1>
+          <button type="button" onClick={() => navigate("/")}>
+            <h1 className=" text-Zomp font-semibold text-2xl ml-2 cursor-pointer">
+              Curious
+            </h1>
+          </button>
         </div>
         {/* search */}
         <div className="relative flex items-stretched">
@@ -32,13 +36,19 @@ const Nav = () => {
         {/* Nav Links */}
         <div className=" flex items-center justify-between">
           <ul className=" font-poppins flex items-center justify-between gap-4 mr-4 ">
-            <li className="   cursor-pointer">Our Story</li>
-            <li className="  cursor-pointer flex items-center">
-              Write <BsPencilFill className=" ml-2" />
-            </li>
-            <li className=" cursor-pointer">
-              <LuMoonStar className=" cursor-pointer text-Zomp text-2xl" />
-            </li>
+            <button type="button" onClick={() => navigate("/ourStory")}>
+              <li className="cursor-pointer">Our Story</li>
+            </button>
+            <button type="button" onClick={() => navigate("/create-blog")}>
+              <li className="cursor-pointer flex items-center">
+                Write <BsPencilFill className=" ml-2" />
+              </li>
+            </button>
+            <button type="button" onClick={() => navigate("/create-blog")}>
+              <li className=" cursor-pointer">
+                <LuMoonStar className=" cursor-pointer text-Zomp text-2xl" />
+              </li>
+            </button>
           </ul>
 
           {/* button */}
