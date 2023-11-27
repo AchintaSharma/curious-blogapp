@@ -4,7 +4,7 @@ const CreateBlog = () => (
 
         <form className=" mx-auto">
           {/* title input */}
-          <div className=" mb-2">
+          <div className=" mb-4">
             <input
               type="text"
               placeholder="Title"
@@ -14,7 +14,7 @@ const CreateBlog = () => (
           {/* category input */}
 
           {/* dropdown */}
-          <select className=" w-full h-12 border border-Zomp rounded-lg px-4 block my-2">
+          <select className=" w-full h-12 border border-Zomp rounded-lg px-4 block my-4">
             <option value="first">Category</option>
             <option value="second">second</option>
             <option value="third">third</option>
