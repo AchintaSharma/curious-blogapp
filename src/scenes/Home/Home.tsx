@@ -6,7 +6,7 @@ import NewsLetter from "../../components/common/cards/NewsLetter.tsx";
 import CommonCards from "../../components/common/cards/commonCards/CommonCards.tsx";
 
 const Home = () => (
-  <div className="max-w-screen-xl mx-auto sm:mx-2 md:mx-4 lg:mx-8  my-4">
+  <div className="max-w-screen-xl mx-auto sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24 my-4">
     {/* grid starts here */}
     <div className="grid grid-cols-12 gap-12">
       {/* first grid */}

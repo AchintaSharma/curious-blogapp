@@ -8,7 +8,7 @@ import CommonCards from "../../components/common/cards/commonCards/CommonCards.t
 // import SmallCard from "../../components/common/cards/SmallCard";
 
 const PostPage = () => (
-  <div className="  max-w-screen-xl mx-auto sm:mx-2 md:mx-4 lg:mx-8 my-4">
+  <div className="max-w-screen-xl mx-auto sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24">
     {/* title */}
     <h2 className=" font-semibold text-2xl my-4 ">
       Top 10 tricky JavaScript questions that I used to ask in interviews.

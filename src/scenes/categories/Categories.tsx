@@ -3,7 +3,7 @@ import MainCard from "../../components/common/cards/MainCard.tsx";
 import { Advertisement1 } from "../../assets/images/images.ts";
 
 const Categories = () => (
-  <div className=" max-w-screen-xl sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24  mx-auto my-8">
+  <div className="max-w-screen-xl mx-auto sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24 my-8">
     {/* title */}
     <h1 className=" text-2xl text-Zomp font-semibold">Categories</h1>
     {/* main card */}

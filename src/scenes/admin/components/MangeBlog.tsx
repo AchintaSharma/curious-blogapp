@@ -2,7 +2,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { FaSort } from "react-icons/fa";
 
 const MangeBlog = () => (
-  <div className=" max-w-screen-lg mx-auto my-2">
+  <div className=" max-w-screen-lg mx-auto my-2 px-4">
     {/* heading */}
     <div className="flex flex-col lg:flex-row items-center justify-between">
       <h2 className=" font-semibold text-xl mb-4">Manage Blogs</h2>
