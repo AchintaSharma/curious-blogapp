@@ -12,7 +12,17 @@ import PostPage from "./scenes/postPage/PostPage.tsx";
 
 import Home from "./scenes/Home/Home.tsx";
 import Categories from "./scenes/categories/Categories.tsx";
+
+// import Admin from "./scenes/admin/Admin.tsx";
+// import Dashboard from "./scenes/admin/components/Dashboard.tsx";
+// import Overview from "./scenes/admin/components/Overview.tsx";
+import Admin from "./scenes/admin/Admin.tsx";
+import Overview from "./scenes/admin/components/Overview.tsx";
 import Dashboard from "./scenes/admin/components/Dashboard.tsx";
+import MangeBlog from "./scenes/admin/components/MangeBlog.tsx";
+import ManageUsers from "./scenes/admin/components/ManageUsers.tsx";
+import ManageCategories from "./scenes/admin/components/ManageCategories.tsx";
+import OurStory from "./scenes/ourStory/OurStory.tsx";
 
 const App = () => {
   const location = useLocation();
@@ -46,7 +56,32 @@ const App = () => {
     },
     {
       path:"/dashboard",
-      element: <Dashboard />
+      // eslint-disable-next-line react/no-children-prop
+      element: <Dashboard children={undefined} />,
+    },
+    {
+      path: "/admin",
+      element: <Admin />
+    },
+    {
+      path: "/overview",
+      element: <Overview />
+    },
+    {
+      path:"/manage-blogs",
+      element: <MangeBlog />
+    },
+    {
+      path:"manage-users",
+      element: <ManageUsers />
+    },
+    {
+      path:"manage-category",
+      element: <ManageCategories />
+    },
+    {
+      path: "ourStory",
+      element:<OurStory />
     },
   ]);
 
