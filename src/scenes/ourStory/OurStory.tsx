@@ -3,7 +3,7 @@ import { Profile1 } from "../../assets/svgs/svg.ts";
 import CommonCards from "../../components/common/cards/commonCards/CommonCards.tsx";
 
 const OurStory = () => (
-  <div className="max-w-screen-xl mx-auto sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24">
+  <div className="max-w-screen-xl mx-auto sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24 ">
     <div>
       <h1 className=" font-semibold text-2xl my-4 text-Zomp">Our Story</h1>
       <p className=" my-8">
