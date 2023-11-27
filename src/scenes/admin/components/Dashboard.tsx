@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { ReactNode } from "react";
 import {
   MdOutlineSaveAs,
@@ -13,8 +14,10 @@ type DashboardProps ={
   children: ReactNode;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({children}) => (
-  <div className=" max-w-screen-xl sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24  mx-auto my-8">
+const Dashboard: React.FC<DashboardProps> = ({children}) => {
+  const navigate = useNavigate();
+  return(
+    <div className=" max-w-screen-xl sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24  mx-auto my-8">
     {/* Overall grid container */}
     <div className="grid grid-cols-12  gap-4 border">
       {/* Left overall grid col */}
@@ -43,13 +46,14 @@ const Dashboard: React.FC<DashboardProps> = ({children}) => (
                 <button
                   type="button"
                   className="hover:text-Zomp text-sm font-medium"
+                  onClick={()=>(navigate("/admin/overview"))}
                 >
                   Overview
                 </button>
               </div>
             </div>
 
-            {/* second link */}
+            {/* Add Blog */}
             <div className="flex items-center gap-4">
               {/* icon */}
               <div>
@@ -60,6 +64,7 @@ const Dashboard: React.FC<DashboardProps> = ({children}) => (
                 <button
                   type="button"
                   className="hover:text-Zomp text-sm font-medium"
+                  onClick={ ()=> (navigate("/create-blog"))}
                 >
                   Add Blog
                 </button>
@@ -77,6 +82,7 @@ const Dashboard: React.FC<DashboardProps> = ({children}) => (
                 <button
                   type="button"
                   className="hover:text-Zomp text-sm font-medium"
+                  onClick={ ()=> (navigate("/admin/manage-users"))}
                 >
                   Manage Blogs
                 </button>
@@ -94,6 +100,7 @@ const Dashboard: React.FC<DashboardProps> = ({children}) => (
                 <button
                   type="button"
                   className="hover:text-Zomp text-sm font-medium"
+                  onClick={ ()=> (navigate("/admin/manage-blog"))}
                 >
                   Manage Users
                 </button>
@@ -111,6 +118,8 @@ const Dashboard: React.FC<DashboardProps> = ({children}) => (
                 <button
                   type="button"
                   className="hover:text-Zomp text-sm font-medium"
+                  onClick={ ()=> (navigate("/admin/manage-categories"))}
+
                 >
                   Manage Categories
                 </button>
@@ -154,6 +163,7 @@ const Dashboard: React.FC<DashboardProps> = ({children}) => (
       </div>
     </div>
   </div>
-);
+  
+)};
 
 export default Dashboard;
