@@ -10,7 +10,7 @@ const Home = () => (
     {/* grid starts here */}
     <div className="grid grid-cols-12 gap-12">
       {/* first grid */}
-      <div className=" col-span-7 border border-green-700">
+      <div className=" col-span-7">
         {/* title */}
         <h2 className=" font-semibold text-2xl text-Zomp">Popular Blogs </h2>
         <MainCard />
@@ -21,7 +21,7 @@ const Home = () => (
 
       {/* /////////////////////////////////////////////////////////////// */}
       {/* second grid */}
-      <div className=" col-span-5 border border-red-700">
+      <div className=" col-span-5">
         {/* title */}
         <h2 className=" font-semibold text-2xl text-Zomp">Popular Blogs </h2>
 
