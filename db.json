@@ -1,0 +1,31 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "author":"Scarlett Johanson",
+      "title": "Beautiful Life",
+      "category": "Life",
+      "message": "Life is beautiful",
+      "date": "20 Nov 2023",
+      "thumbnail": "src/assets/images/scarlett.jpg"
+    },
+    {
+      "id": 2,
+      "author":"Alexandra Dadario",
+      "title": "React Basics",
+      "category": "React",
+      "message": "React is amazing library of js.",
+      "date": "25 Nov 2023",
+      "image": "src/assets/images/alexandra.jpg"
+    },
+    {
+      "id": 3,
+      "author":"Anne Hathaway",
+      "title": "To 10 Death Metal Bands",
+      "category": "Metal-music",
+      "message": "Death",
+      "date": "02 Dec 2023",
+      "thumbnail": "src/assets/images/anne.jpg"
+    }
+  ]
+}
