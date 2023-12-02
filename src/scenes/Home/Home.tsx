@@ -30,9 +30,6 @@ const Home = () => {
           {/* title */}
           <h2 className=" font-semibold text-2xl text-Zomp">Popular Blogs </h2>
            <MainCard blogs={blogs} />
-          {/* <MainCard />
-          <MainCard />
-          <MainCard /> */}
         </div>
 
         {/* /////////////////////////////////////////////////////////////// */}
@@ -54,8 +51,8 @@ const Home = () => {
       {/* Advertisement */}
       <BigAdvertisement />
 
-      {/* Recomended */}
-      <CommonCards />
+      {/* Recomended section */}
+      <CommonCards blogs={blogs} />
     </div>
   );
 };

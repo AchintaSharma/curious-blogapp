@@ -6,7 +6,6 @@ import { Blog } from "../../../types/blog.ts";
 
 type BlogListProps = {
   blogs: Blog[];
-  // closeModal: () => void;
 };
 
 const MainCard: React.FC<BlogListProps> = ({ blogs }) => (

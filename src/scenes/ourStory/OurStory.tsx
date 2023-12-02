@@ -1,8 +1,12 @@
 import { OurstoryImg } from "../../assets/images/images.ts";
 import { Profile1 } from "../../assets/svgs/svg.ts";
 import CommonCards from "../../components/common/cards/commonCards/CommonCards.tsx";
+import useBlogStore from "../../store/blogStore.ts";
 
-const OurStory = () => (
+const OurStory = () => {
+  // Array of blogs
+  const blogs = useBlogStore((state)=>state.blogs);
+  return (
   <div className="max-w-screen-xl mx-auto sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24 ">
     <div>
       <h1 className=" font-semibold text-2xl my-4 text-Zomp">Our Story</h1>
@@ -89,9 +93,9 @@ const OurStory = () => (
     
     {/* Read more */}
     <div className="my-8">
-      <CommonCards />
+      <CommonCards blogs={blogs} />
     </div>
   </div>
-);
+);}
 
 export default OurStory;
