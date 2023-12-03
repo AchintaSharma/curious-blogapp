@@ -7,4 +7,5 @@ export type Blog = {
   thumbnail: string;
   author: string;
   date: string;
+  content: string;
 };

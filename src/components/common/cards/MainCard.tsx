@@ -32,14 +32,14 @@ const MainCard: React.FC<BlogListProps> = ({ blogs }) => (
               {blog.title}
             </h2>
             <p className=" text-sm w-3/4">
-              {blog.message}
+              {blog.content}
               <a className="text-Zomp ml-2" href="/post">
                 Read more
               </a>
             </p>
           </div>
           <div>
-            <img src={thumb1} alt="thumbnail" className="w-24 h-24 cursor-pointer" />
+            <img src={blog.thumbnail || thumb1} alt="thumbnail" className="w-24 h-24 cursor-pointer" />
           </div>
         </div>
         {/* card footer */}

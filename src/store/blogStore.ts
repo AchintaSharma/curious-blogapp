@@ -18,7 +18,7 @@ export const fetchAllBlog = async () => {
 };
 
 // create blog
-export const createBlog = async (blog: unknown) => {
+export const createBlog = async (blog: Blog) => {
   try {
     const response = await axios.post(`${BaseUrl}/blogs`, blog);
     return response.data;
