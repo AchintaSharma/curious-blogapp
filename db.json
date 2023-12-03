@@ -26,6 +26,15 @@
       "message": "Death",
       "date": "02 Dec 2023",
       "thumbnail": "src/assets/images/anne.jpg"
+    },
+    {
+      "id": 4,
+      "author":"Trisha Krishnan",
+      "title": "To 10 Death Metal Bands",
+      "category": "Metal-music",
+      "message": "Death",
+      "date": "02 Dec 2023",
+      "thumbnail": "src/assets/images/anne.jpg"
     }
   ]
 }
