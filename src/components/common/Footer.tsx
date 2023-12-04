@@ -26,11 +26,13 @@ const Footer = () => {
           </div>
 
           <ul className="font-poppins flex items-center justify-between gap-4">
-            <button type="button" onClick={()=>(navigate("/help"))}>
-
-            <li className=" cursor-pointer">Help</li>
+            <button type="button" onClick={() => navigate("/")}>
+              <li className=" cursor-pointer">Home</li>
             </button>
-            
+            <button type="button" onClick={() => navigate("/help")}>
+              <li className=" cursor-pointer">Contact Us</li>
+            </button>
+
             <button type="button" onClick={() => navigate("/ourStory")}>
               <li className=" cursor-pointer">Our Story</li>
             </button>

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { create } from "zustand";
 import { Blog } from "../types/blog.ts";
-
 import BaseUrl from "../api/api.ts";
 
 // api functions
@@ -10,6 +9,7 @@ import BaseUrl from "../api/api.ts";
 export const fetchAllBlog = async () => {
   try {
     const response = await axios.get<Blog[]>(`${BaseUrl}/blogs`);
+    // console.log("response data", response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -18,10 +18,10 @@ export const fetchAllBlog = async () => {
 };
 
 // create blog
-export const createBlog = async (blog: Blog) => {
+export const createBlog = async (blog: Blog): Promise<Blog> => {
   try {
-    const response = await axios.post(`${BaseUrl}/blogs`, blog);
-    return response.data;
+    const response = await axios.post<Blog>(`${BaseUrl}/blogs`, blog);
+    return response.data; // Return the whole created blog, including the ID
   } catch (error) {
     console.error(error);
     throw error;
@@ -39,7 +39,7 @@ export const removeBlog = async (id: string) => {
 };
 
 // update blog
-export const editBlog = async (id: string, blog: unknown) => {
+export const editBlog = async (id: string, blog: Blog) => {
   try {
     await axios.put(`${BaseUrl}/blogs/${id}`, blog);
   } catch (error) {
@@ -60,12 +60,14 @@ type State = {
 const useBlogStore = create<State>((set) => {
   return {
     blogs: [],
+
     addBlog: async (blog) => {
       try {
         const newBlog = await createBlog(blog);
         set((state) => {
           return { blogs: [...state.blogs, newBlog] };
         });
+        return newBlog;
       } catch (error) {
         console.error(error);
         throw error;

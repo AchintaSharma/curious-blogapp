@@ -1,7 +1,7 @@
 {
   "blogs": [
     {
-      "id": 1,
+      "id": "1",
       "author": "Scarlett Johanson",
       "title": "Beautiful Life",
       "category": "Life",
@@ -10,7 +10,7 @@
       "thumbnail": "src/assets/images/scarlett.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "author": "Alexandra Dadario",
       "title": "React Basics",
       "category": "React",
@@ -19,7 +19,7 @@
       "image": "src/assets/images/alexandra.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "author": "Anne Hathaway",
       "title": "To 10 Death Metal Bands",
       "category": "Metal-music",
@@ -28,7 +28,7 @@
       "thumbnail": "src/assets/images/anne.jpg"
     },
     {
-      "id": 4,
+      "id": "4",
       "author": "Trisha Krishnan",
       "title": "To 10 Death Metal Bands",
       "category": "Metal-music",
@@ -37,7 +37,7 @@
       "thumbnail": "src/assets/images/anne.jpg"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "wedding",
       "category": "second",
       "thumbnail": "",
@@ -46,7 +46,7 @@
       "content": "everyone must do marrige"
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "films",
       "category": "third",
       "thumbnail": "",
@@ -55,7 +55,7 @@
       "content": "messages"
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Web Development",
       "category": "second",
       "message": "",
@@ -63,6 +63,96 @@
       "author": "Jane",
       "date": "2023-12-03",
       "content": "It is amazing to start your  development carrier. It eases life."
+    },
+    {
+      "id": "8",
+      "title": "hello",
+      "category": "second",
+      "message": "",
+      "thumbnail": "",
+      "author": "adfdsf",
+      "date": "2023-12-04",
+      "content": "adfasfd"
+    },
+    {
+      "id": "TxAA_Pg",
+      "title": "rolex",
+      "category": "second",
+      "message": "",
+      "thumbnail": "",
+      "author": "rolex",
+      "date": "2023-12-04",
+      "content": "rolex is not a watch but a  character in vikram movie."
+    },
+    {
+      "id": "mEtN-Im",
+      "title": "fujaiel",
+      "category": "second",
+      "message": "",
+      "thumbnail": "",
+      "author": "sfdf",
+      "date": "2023-12-04",
+      "content": "sdfsfsfsdf"
+    },
+    {
+      "id": "ru0ETl9",
+      "title": "suki",
+      "category": "second",
+      "message": "",
+      "thumbnail": "",
+      "author": "suki",
+      "date": "2023-12-04",
+      "content": "suki is suki"
+    },
+    {
+      "id": "oItdo5Z",
+      "title": "rakib",
+      "category": "third",
+      "message": "",
+      "thumbnail": "",
+      "author": "rakib",
+      "date": "2023-12-04",
+      "content": "rakib"
+    },
+    {
+      "id": "Ezw9QRl",
+      "title": "yo",
+      "category": "third",
+      "message": "",
+      "thumbnail": "",
+      "author": "yo",
+      "date": "2023-12-04",
+      "content": "yo"
+    },
+    {
+      "id": "cVEzDlc",
+      "title": "sufian",
+      "category": "third",
+      "message": "",
+      "thumbnail": "",
+      "author": "sufian",
+      "date": "2023-12-04",
+      "content": "sufian"
+    },
+    {
+      "id": "yOtd5eY",
+      "title": "a",
+      "category": "second",
+      "message": "",
+      "thumbnail": "",
+      "author": "a",
+      "date": "",
+      "content": "a"
+    },
+    {
+      "id": "IH1onWT",
+      "title": "test 1",
+      "category": "second",
+      "message": "",
+      "thumbnail": "",
+      "author": "",
+      "date": "",
+      "content": "test"
     }
   ]
 }

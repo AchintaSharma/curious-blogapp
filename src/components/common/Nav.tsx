@@ -36,6 +36,9 @@ const Nav = () => {
         {/* Nav Links */}
         <div className=" flex items-center justify-between">
           <ul className=" font-poppins flex items-center justify-between gap-4 mr-4 ">
+            <button type="button" onClick={() => navigate("/")}>
+              <li className="cursor-pointer">Home</li>
+            </button>
             <button type="button" onClick={() => navigate("/ourStory")}>
               <li className="cursor-pointer">Our Story</li>
             </button>
