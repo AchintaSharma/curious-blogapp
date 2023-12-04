@@ -1,0 +1,68 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "author": "Scarlett Johanson",
+      "title": "Beautiful Life",
+      "category": "Life",
+      "content": "Life is beautiful",
+      "date": "20 Nov 2023",
+      "thumbnail": "src/assets/images/scarlett.jpg"
+    },
+    {
+      "id": 2,
+      "author": "Alexandra Dadario",
+      "title": "React Basics",
+      "category": "React",
+      "content": "React is amazing library of js.",
+      "date": "25 Nov 2023",
+      "image": "src/assets/images/alexandra.jpg"
+    },
+    {
+      "id": 3,
+      "author": "Anne Hathaway",
+      "title": "To 10 Death Metal Bands",
+      "category": "Metal-music",
+      "content": "Death",
+      "date": "02 Dec 2023",
+      "thumbnail": "src/assets/images/anne.jpg"
+    },
+    {
+      "id": 4,
+      "author": "Trisha Krishnan",
+      "title": "To 10 Death Metal Bands",
+      "category": "Metal-music",
+      "content": "Death",
+      "date": "02 Dec 2023",
+      "thumbnail": "src/assets/images/anne.jpg"
+    },
+    {
+      "id": 5,
+      "title": "wedding",
+      "category": "second",
+      "thumbnail": "",
+      "author": "",
+      "date": "",
+      "content": "everyone must do marrige"
+    },
+    {
+      "id": 6,
+      "title": "films",
+      "category": "third",
+      "thumbnail": "",
+      "author": "",
+      "date": "",
+      "content": "messages"
+    },
+    {
+      "id": 7,
+      "title": "Web Development",
+      "category": "second",
+      "message": "",
+      "thumbnail": "",
+      "author": "Jane",
+      "date": "2023-12-03",
+      "content": "It is amazing to start your  development carrier. It eases life."
+    }
+  ]
+}
