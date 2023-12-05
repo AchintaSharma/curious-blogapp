@@ -3,7 +3,19 @@ import { Blog } from "../../types/blog";
 import useBlogStore from "../../store/blogStore";
 import { useNavigate } from "react-router-dom";
 
+
+// Function to convert image to base64
+const convertImageToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+};
+
 const CreateBlog = () => {
+  
   // zustand functions
   const [formData, setFormData] = useState<Blog>({
     id: "",
@@ -16,12 +28,15 @@ const CreateBlog = () => {
     content: "",
   });
 
+  
+  // state variables to track validity of each input fields
+  const [titleValid, setTitleValid] = useState(true);
+  const [categoryValid, setCategoryValid] = useState(true);
+  const [contentValid, setContentValid] = useState(true);
+
   // add blog
   const addBlog = useBlogStore((state) => state.addBlog);
   // console.log(addBlog);
-
-  
-  
 
   // handle change
   const handleChange = (
@@ -31,6 +46,21 @@ const CreateBlog = () => {
   ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+    // validate input field and update
+    switch (name) {
+      case "title":
+        setTitleValid(value.trim() !== "");
+        break;
+      case "category":
+        setCategoryValid(value !== "");
+        break;
+      case "content":
+        setContentValid(value.trim() !== "");
+        break;
+      default:
+        break;
+    }
   };
 
   // after submitting form
@@ -45,12 +75,24 @@ const CreateBlog = () => {
     setIsModalOpen(false);
   };
 
+  // changing type to any
+  const isFile = (value: any): value is File => {
+    return value instanceof File;
+  };
+
   // handle submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(titleValid);
+    console.log(categoryValid);
+    console.log(contentValid);
     try {
+      if (isFile(formData.thumbnail)) {
+        const base64String = await convertImageToBase64(formData.thumbnail);
+        setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+      }
+
       addBlog(formData);
-      
       setIsModalOpen(true);
       // reset form data
       setFormData({
@@ -76,14 +118,30 @@ const CreateBlog = () => {
     closeModal();
   };
 
+  
   // View post click
-
   const handleViewPostClick = () => {
     closeModal();
 
     // Navigate to the newly created post using its id
     // navigate(`/post/${}`);
   };
+
+  // Image converter
+  // state for image  file
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  // handle image change
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setImageFile(file || null);
+
+    if (file) {
+      const base64String = await convertImageToBase64(file);
+      setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+    }
+  };
+
 
   return (
     <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300  shadow-lg bg-white my-4">
@@ -96,7 +154,9 @@ const CreateBlog = () => {
           <input
             type="text"
             placeholder="Title"
-            className=" w-full h-12 pl-4 border border-Zomp rounded-lg"
+            className={`w-full h-12 pl-4 border ${
+              titleValid ? "border-Zomp" : "border-red-600"
+            } rounded-lg`}
             name="title"
             value={formData.title}
             onChange={handleChange}
@@ -107,7 +167,9 @@ const CreateBlog = () => {
 
         {/* dropdown */}
         <select
-          className=" w-full h-12 border border-Zomp rounded-lg px-4 block my-4"
+          className={`w-full h-12 border ${
+            categoryValid ? "border-Zomp" : "border-red-600"
+          } rounded-lg px-4 block my-4`}
           name="category"
           value={formData.category}
           onChange={handleChange}
@@ -125,7 +187,9 @@ const CreateBlog = () => {
             placeholder="Content..."
             cols={50}
             rows={6}
-            className=" w-full  pl-4 pt-4 border border-Zomp rounded-lg"
+            className={`w-full  pl-4 pt-4 border ${
+              contentValid ? "border-Zomp" : "border-red-600"
+            } rounded-lg`}
             style={{ resize: "none" }}
             name="content"
             value={formData.content}
@@ -165,6 +229,7 @@ const CreateBlog = () => {
           <input
             type="file"
             className=" w-full pt-2 h-12 pl-4 border border-Zomp rounded-lg"
+            onChange={handleImageChange}
           />
         </div>
 
@@ -173,6 +238,14 @@ const CreateBlog = () => {
           <input type="checkbox" />{" "}
           <span className=" font-semibold ml-2">Publish</span>
         </div> */}
+
+        {/* display error */}
+
+        <div className="my-4">
+          {(!titleValid || !categoryValid || !contentValid) && (
+            <p className="text-red-600">Please fill in all required fields</p>
+          )}
+        </div>
 
         {/* submit button */}
         <div className="my-3">
@@ -186,7 +259,10 @@ const CreateBlog = () => {
       </form>
 
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={closeModal}>
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+          onClick={closeModal}
+        >
           <div className="bg-white p-8 rounded-lg">
             <h2 className="text-2xl font-bold mb-4">
               Blog Submitted Successfully!

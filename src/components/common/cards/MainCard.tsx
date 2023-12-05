@@ -1,6 +1,6 @@
 import { IoShareOutline } from "react-icons/io5";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
-import { thumb1 } from "../../../assets/images/images.ts";
+// import { thumb1 } from "../../../assets/images/images.ts";
 import { Profile1 } from "../../../assets/svgs/svg.ts";
 import { Blog } from "../../../types/blog.ts";
 import { Link } from "react-router-dom";
@@ -47,7 +47,8 @@ const MainCard: React.FC<BlogListProps> = ({ blogs }) => (
             </div>
             <div>
               <img
-                src={thumb1}
+                // src={thumb1}
+                src={blog.thumbnail}
                 alt="thumbnail"
                 className="w-24 h-24 cursor-pointer"
               />
