@@ -35,7 +35,7 @@ const App = () => {
     },
     {
       // path: "/post/:id",
-      path: "/post",
+      path: "/post/:id",
       element: <PostPage />,
     },
     {
@@ -98,21 +98,3 @@ const App = () => {
 };
 
 export default App;
-
-// const App = () => {
-//   return (
-//     <>
-//       <Nav />
-//       <SignUp />
-//       <SignIn />
-//       <CreateBlog />
-//       <MainCard />
-//       <SmallCard />
-//       <NewsLetter />
-//       <PostPage />
-//       <Footer />
-//     </>
-//   );
-// };
-
-// export default App;
