@@ -23,6 +23,15 @@ const PostPage = () => {
     getAllBlogs();
   }, [getAllBlogs]);
 
+// positioning to top:
+useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
+
   // routing - params
   const { id } = useParams<{ id: string }>();
   // find selected blog based on ID

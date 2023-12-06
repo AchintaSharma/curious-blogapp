@@ -16,6 +16,14 @@ const OurStory = () => {
     getAllBlogs();
   }, [getAllBlogs]);
 
+  // positioning to top:
+useEffect(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
   return (
     <div className="max-w-screen-xl mx-auto sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24 ">
       <div>

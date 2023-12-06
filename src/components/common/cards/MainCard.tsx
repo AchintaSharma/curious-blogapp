@@ -50,7 +50,7 @@ const MainCard: React.FC<BlogListProps> = ({ blogs }) => (
                 // src={thumb1}
                 src={blog.thumbnail}
                 alt="thumbnail"
-                className="w-24 h-24 cursor-pointer"
+                className=" w-24 h-24 object-fit cursor-pointer"
               />
             </div>
           </div>

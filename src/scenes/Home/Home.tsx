@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import BigAdvertisement from "../../components/common/advertisement/BigAdvertisement.tsx";
 import SmallAd from "../../components/common/advertisement/SmallAd.tsx";
@@ -8,25 +7,30 @@ import CommonCards from "../../components/common/cards/commonCards/CommonCards.t
 import useBlogStore from "../../store/blogStore.ts";
 
 
-
 const Home = () => {
-
   // Array of blogs
-  const blogs = useBlogStore((state)=>state.blogs);
+  const blogs = useBlogStore((state) => state.blogs);
 
   // getAllBlog function
-  const getAllBlogs = useBlogStore((state)=> state.getAllBlog)
-
+  const getAllBlogs = useBlogStore((state) => state.getAllBlog);
 
   // useEffect hook is used to trigger the getBlog function when the component mounts, ensuring that the data is fetched.
   useEffect(() => {
     getAllBlogs();
   }, [getAllBlogs]);
 
-// add Blog
+  // positioning to top:
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
 
-
-
+  // sort by date
+  const sortBlogs = [...blogs].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
 
   return (
     <div className="max-w-screen-xl mx-auto sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24 my-4">
@@ -36,7 +40,7 @@ const Home = () => {
         <div className=" col-span-7">
           {/* title */}
           <h2 className=" font-semibold text-2xl text-Zomp">Popular Blogs </h2>
-           <MainCard blogs={blogs} />
+          <MainCard blogs={sortBlogs} />
         </div>
 
         {/* /////////////////////////////////////////////////////////////// */}
@@ -59,7 +63,7 @@ const Home = () => {
       <BigAdvertisement />
 
       {/* Recomended section */}
-      <CommonCards blogs={blogs} />
+      <CommonCards blogs={sortBlogs} />
     </div>
   );
 };
