@@ -1,12 +1,7 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Blog } from "../../types/blog";
 import useBlogStore from "../../store/blogStore";
 import { useNavigate } from "react-router-dom";
-
-// interface Blog {
-//   id: string;
-//   // other properties...
-// }
 
 // Function to convert image to base64
 const convertImageToBase64 = (file: File): Promise<string> => {
@@ -31,14 +26,8 @@ const CreateBlog = () => {
     content: "",
   });
 
-  // state variables to track validity of each input fields
-  const [titleValid, setTitleValid] = useState(true);
-  const [categoryValid, setCategoryValid] = useState(true);
-  const [contentValid, setContentValid] = useState(true);
-
   // add blog
   const addBlog = useBlogStore((state) => state.addBlog);
-
 
   // handle change
   const handleChange = (
@@ -82,19 +71,56 @@ const CreateBlog = () => {
     return value instanceof File;
   };
 
+  // Image converter
+  // state for image  file
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  // handle image change
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setImageFile(file || null);
+
+    if (file) {
+      const base64String = await convertImageToBase64(file);
+      setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+    }
+  };
+
+  // state variables to track validity of each input fields
+  const [titleValid, setTitleValid] = useState(true);
+  const [categoryValid, setCategoryValid] = useState(true);
+  const [contentValid, setContentValid] = useState(true);
+
+  const handleImageUpload = async () => {
+    if (isFile(formData.thumbnail)) {
+      const base64String = await convertImageToBase64(formData.thumbnail);
+      setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+    }
+  };
+
   // handle submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check for the validity of each input field
+    const isTitleValid = formData.title.trim() !== "";
+    const isCategoryValid = formData.category !== "";
+    const isContentValid = formData.content.trim() !== "";
+    // Update state variables for input field validity
+    setTitleValid(isTitleValid);
+    setCategoryValid(isCategoryValid);
+    setContentValid(isContentValid);
+
     try {
-      if (isFile(formData.thumbnail)) {
-        const base64String = await convertImageToBase64(formData.thumbnail);
-        setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
-      }
+      // if (isFile(formData.thumbnail)) {
+      //   const base64String = await convertImageToBase64(formData.thumbnail);
+      //   setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+      // }
+
+      handleImageUpload();
 
       // adding blog
       addBlog(formData);
-
-      // navigate(`/post/${newBlog.id}`);
 
       setIsModalOpen(true);
       // reset form data
@@ -120,32 +146,16 @@ const CreateBlog = () => {
     closeModal();
   };
 
-
-// viewPost
+  // viewPost
   // const {id} = useBlogStore((state)=>state.addBlog)
   // const [createdBlog, setCreatedBlog] = useState<Blog | null>();
   const currentBlogId = useBlogStore((state) => state.currentBlogId);
-  console.log(currentBlogId)
+  console.log(currentBlogId);
 
   // View post click
   const handleViewPostClick = () => {
     closeModal();
     navigate(`/post/${currentBlogId}`);
-  };
-
-  // Image converter
-  // state for image  file
-  const [imageFile, setImageFile] = useState<File | null>(null);
-
-  // handle image change
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    setImageFile(file || null);
-
-    if (file) {
-      const base64String = await convertImageToBase64(file);
-      setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
-    }
   };
 
   return (
@@ -238,19 +248,13 @@ const CreateBlog = () => {
           />
         </div>
 
-        {/* radio */}
-        {/* <div className="my-4">
-          <input type="checkbox" />{" "}
-          <span className=" font-semibold ml-2">Publish</span>
-        </div> */}
-
         {/* display error */}
 
-        <div className="my-4">
+        {/* <div className="my-4">
           {(!titleValid || !categoryValid || !contentValid) && (
             <p className="text-red-600">Please fill in all required fields</p>
           )}
-        </div>
+        </div> */}
 
         {/* submit button */}
         <div className="my-3">
