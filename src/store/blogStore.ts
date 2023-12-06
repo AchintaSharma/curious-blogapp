@@ -3,51 +3,6 @@ import { create } from "zustand";
 import { Blog } from "../types/blog.ts";
 import BaseUrl from "../api/api.ts";
 
-// api functions
-
-// get all blogs
-export const fetchAllBlog = async () => {
-  try {
-    const response = await axios.get<Blog[]>(`${BaseUrl}/blogs`);
-    // console.log("response data", response.data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-
-// create blog
-export const createBlog = async (blog: Blog): Promise<Blog> => {
-  try {
-    const response = await axios.post<Blog>(`${BaseUrl}/blogs`, blog);
-    return response.data; // Return the whole created blog, including the ID
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-
-// delete blog
-export const removeBlog = async (id: string) => {
-  try {
-    await axios.delete(`${BaseUrl}/blogs/${id}`);
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-
-// update blog
-export const editBlog = async (id: string, blog: Blog) => {
-  try {
-    await axios.put(`${BaseUrl}/blogs/${id}`, blog);
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-
 // zustand functions
 type State = {
   blogs: Blog[];
@@ -61,9 +16,10 @@ const useBlogStore = create<State>((set) => {
   return {
     blogs: [],
 
-    addBlog: async (blog) => {
+    addBlog: async (blog: Blog): Promise<Blog> => {
       try {
-        const newBlog = await createBlog(blog);
+        const response = await axios.post<Blog>(`${BaseUrl}/blogs`, blog);
+        const newBlog = response.data;
         set((state) => {
           return { blogs: [...state.blogs, newBlog] };
         });
@@ -73,9 +29,10 @@ const useBlogStore = create<State>((set) => {
         throw error;
       }
     },
-    deleteBlog: async (id) => {
+
+    deleteBlog: async (id: string) => {
       try {
-        await removeBlog(id);
+        await axios.delete(`${BaseUrl}/blogs/${id}`);
         set((state) => {
           return { blogs: state.blogs.filter((blog) => blog.id !== id) };
         });
@@ -84,9 +41,10 @@ const useBlogStore = create<State>((set) => {
         throw error;
       }
     },
-    updateBlog: async (id, blog) => {
+
+    updateBlog: async (id: string, blog: Blog) => {
       try {
-        await editBlog(id, blog);
+        await axios.put(`${BaseUrl}/blogs/${id}`, blog);
         set((state) => {
           return {
             blogs: state.blogs.map((b) => (b.id === id ? blog : b)),
@@ -97,9 +55,11 @@ const useBlogStore = create<State>((set) => {
         throw error;
       }
     },
+
     getAllBlog: async () => {
       try {
-        const blogs = await fetchAllBlog();
+        const response = await axios.get<Blog[]>(`${BaseUrl}/blogs`);
+        const blogs = response.data;
         set(() => {
           return { blogs };
         });

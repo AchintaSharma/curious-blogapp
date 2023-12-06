@@ -6,7 +6,6 @@ import NewsLetter from "../../components/common/cards/NewsLetter.tsx";
 import CommonCards from "../../components/common/cards/commonCards/CommonCards.tsx";
 import useBlogStore from "../../store/blogStore.ts";
 
-
 const Home = () => {
   // Array of blogs
   const blogs = useBlogStore((state) => state.blogs);
@@ -29,7 +28,7 @@ const Home = () => {
 
   // sort by date
   const sortBlogs = [...blogs].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
   return (

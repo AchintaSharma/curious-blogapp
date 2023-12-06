@@ -91,8 +91,19 @@ const CreateBlog = () => {
         const base64String = await convertImageToBase64(formData.thumbnail);
         setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
       }
+      
+      // ISO 8601 format
+      // const formattedDate = new Date().toISOString()
 
+      // update formData with updated date format
+      // setFormData((prevData)=>({...prevData, date:formattedDate}))
+
+      // sending to server
       addBlog(formData);
+      // console.log(newBlog)
+
+      // navigate(`/post/${newBlog.id}`);
+
       setIsModalOpen(true);
       // reset form data
       setFormData({
