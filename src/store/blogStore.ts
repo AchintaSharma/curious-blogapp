@@ -3,6 +3,19 @@ import { create } from "zustand";
 import { Blog } from "../types/blog.ts";
 import BaseUrl from "../api/api.ts";
 
+const generateUniqueId = () => {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const idLength = 10;
+
+  let result = "";
+  for (let i = 0; i < idLength; i += 1) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  return result;
+};
+
 // zustand functions
 type State = {
   blogs: Blog[];
@@ -10,18 +23,27 @@ type State = {
   deleteBlog: (id: string) => void;
   updateBlog: (id: string, blog: Blog) => void;
   getAllBlog: () => void;
+  currentBlogId: string | null;
 };
 
 const useBlogStore = create<State>((set) => {
   return {
     blogs: [],
+    currentBlogId: null,
 
     addBlog: async (blog: Blog): Promise<Blog> => {
       try {
-        const response = await axios.post<Blog>(`${BaseUrl}/blogs`, blog);
+        // Add a unique id to the blog object
+        const blogWithId = { ...blog, id: generateUniqueId() };
+
+        const response = await axios.post<Blog>(`${BaseUrl}/blogs`, blogWithId);
         const newBlog = response.data;
+
         set((state) => {
-          return { blogs: [...state.blogs, newBlog] };
+          return {
+            blogs: [...state.blogs, newBlog],
+            currentBlogId: newBlog.id,
+          };
         });
         return newBlog;
       } catch (error) {

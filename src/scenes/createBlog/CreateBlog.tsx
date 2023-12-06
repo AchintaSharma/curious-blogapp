@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { Blog } from "../../types/blog";
 import useBlogStore from "../../store/blogStore";
 import { useNavigate } from "react-router-dom";
 
+// interface Blog {
+//   id: string;
+//   // other properties...
+// }
 
 // Function to convert image to base64
 const convertImageToBase64 = (file: File): Promise<string> => {
@@ -15,7 +19,6 @@ const convertImageToBase64 = (file: File): Promise<string> => {
 };
 
 const CreateBlog = () => {
-  
   // zustand functions
   const [formData, setFormData] = useState<Blog>({
     id: "",
@@ -28,7 +31,6 @@ const CreateBlog = () => {
     content: "",
   });
 
-  
   // state variables to track validity of each input fields
   const [titleValid, setTitleValid] = useState(true);
   const [categoryValid, setCategoryValid] = useState(true);
@@ -36,7 +38,7 @@ const CreateBlog = () => {
 
   // add blog
   const addBlog = useBlogStore((state) => state.addBlog);
-  // console.log(addBlog);
+
 
   // handle change
   const handleChange = (
@@ -83,24 +85,14 @@ const CreateBlog = () => {
   // handle submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(titleValid);
-    console.log(categoryValid);
-    console.log(contentValid);
     try {
       if (isFile(formData.thumbnail)) {
         const base64String = await convertImageToBase64(formData.thumbnail);
         setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
       }
-      
-      // ISO 8601 format
-      // const formattedDate = new Date().toISOString()
 
-      // update formData with updated date format
-      // setFormData((prevData)=>({...prevData, date:formattedDate}))
-
-      // sending to server
+      // adding blog
       addBlog(formData);
-      // console.log(newBlog)
 
       // navigate(`/post/${newBlog.id}`);
 
@@ -116,7 +108,6 @@ const CreateBlog = () => {
         date: "",
         content: "",
       });
-      // navigate(`/post/${newBlog.id}`);
     } catch (error) {
       console.error(error);
       throw error;
@@ -129,13 +120,17 @@ const CreateBlog = () => {
     closeModal();
   };
 
-  
+
+// viewPost
+  // const {id} = useBlogStore((state)=>state.addBlog)
+  // const [createdBlog, setCreatedBlog] = useState<Blog | null>();
+  const currentBlogId = useBlogStore((state) => state.currentBlogId);
+  console.log(currentBlogId)
+
   // View post click
   const handleViewPostClick = () => {
     closeModal();
-
-    // Navigate to the newly created post using its id
-    // navigate(`/post/${}`);
+    navigate(`/post/${currentBlogId}`);
   };
 
   // Image converter
@@ -152,7 +147,6 @@ const CreateBlog = () => {
       setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
     }
   };
-
 
   return (
     <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300  shadow-lg bg-white my-4">
@@ -272,7 +266,7 @@ const CreateBlog = () => {
       {isModalOpen && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-          onClick={closeModal}
+          // onClick={closeModal}
         >
           <div className="bg-white p-8 rounded-lg">
             <h2 className="text-2xl font-bold mb-4">
