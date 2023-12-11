@@ -3,7 +3,6 @@ import { Blog } from "../../types/blog";
 import useBlogStore from "../../store/blogStore";
 import { useNavigate } from "react-router-dom";
 
-
 // Function to convert image to base64
 const convertImageToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -15,7 +14,6 @@ const convertImageToBase64 = (file: File): Promise<string> => {
 };
 
 const CreateBlog = () => {
-  
   // zustand functions
   const [formData, setFormData] = useState<Blog>({
     id: "",
@@ -28,15 +26,8 @@ const CreateBlog = () => {
     content: "",
   });
 
-  
-  // state variables to track validity of each input fields
-  const [titleValid, setTitleValid] = useState(true);
-  const [categoryValid, setCategoryValid] = useState(true);
-  const [contentValid, setContentValid] = useState(true);
-
   // add blog
   const addBlog = useBlogStore((state) => state.addBlog);
-  // console.log(addBlog);
 
   // handle change
   const handleChange = (
@@ -80,53 +71,6 @@ const CreateBlog = () => {
     return value instanceof File;
   };
 
-  // handle submit
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(titleValid);
-    console.log(categoryValid);
-    console.log(contentValid);
-    try {
-      if (isFile(formData.thumbnail)) {
-        const base64String = await convertImageToBase64(formData.thumbnail);
-        setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
-      }
-
-      addBlog(formData);
-      setIsModalOpen(true);
-      // reset form data
-      setFormData({
-        id: "",
-        title: "",
-        category: "",
-        message: "",
-        thumbnail: "",
-        author: "",
-        date: "",
-        content: "",
-      });
-      // navigate(`/post/${newBlog.id}`);
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  };
-
-  // handle home click
-  const handleHomeClick = () => {
-    navigate("/");
-    closeModal();
-  };
-
-  
-  // View post click
-  const handleViewPostClick = () => {
-    closeModal();
-
-    // Navigate to the newly created post using its id
-    // navigate(`/post/${}`);
-  };
-
   // Image converter
   // state for image  file
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -142,6 +86,77 @@ const CreateBlog = () => {
     }
   };
 
+  // state variables to track validity of each input fields
+  const [titleValid, setTitleValid] = useState(true);
+  const [categoryValid, setCategoryValid] = useState(true);
+  const [contentValid, setContentValid] = useState(true);
+
+  const handleImageUpload = async () => {
+    if (isFile(formData.thumbnail)) {
+      const base64String = await convertImageToBase64(formData.thumbnail);
+      setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+    }
+  };
+
+  // handle submit
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Check for the validity of each input field
+    const isTitleValid = formData.title.trim() !== "";
+    const isCategoryValid = formData.category !== "";
+    const isContentValid = formData.content.trim() !== "";
+    // Update state variables for input field validity
+    setTitleValid(isTitleValid);
+    setCategoryValid(isCategoryValid);
+    setContentValid(isContentValid);
+
+    try {
+      // if (isFile(formData.thumbnail)) {
+      //   const base64String = await convertImageToBase64(formData.thumbnail);
+      //   setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+      // }
+
+      handleImageUpload();
+
+      // adding blog
+      addBlog(formData);
+
+      setIsModalOpen(true);
+      // reset form data
+      setFormData({
+        id: "",
+        title: "",
+        category: "",
+        message: "",
+        thumbnail: "",
+        author: "",
+        date: "",
+        content: "",
+      });
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
+  // handle home click
+  const handleHomeClick = () => {
+    navigate("/");
+    closeModal();
+  };
+
+  // viewPost
+  // const {id} = useBlogStore((state)=>state.addBlog)
+  // const [createdBlog, setCreatedBlog] = useState<Blog | null>();
+  const currentBlogId = useBlogStore((state) => state.currentBlogId);
+  console.log(currentBlogId);
+
+  // View post click
+  const handleViewPostClick = () => {
+    closeModal();
+    navigate(`/post/${currentBlogId}`);
+  };
 
   return (
     <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300  shadow-lg bg-white my-4">
@@ -233,19 +248,13 @@ const CreateBlog = () => {
           />
         </div>
 
-        {/* radio */}
-        {/* <div className="my-4">
-          <input type="checkbox" />{" "}
-          <span className=" font-semibold ml-2">Publish</span>
-        </div> */}
-
         {/* display error */}
 
-        <div className="my-4">
+        {/* <div className="my-4">
           {(!titleValid || !categoryValid || !contentValid) && (
             <p className="text-red-600">Please fill in all required fields</p>
           )}
-        </div>
+        </div> */}
 
         {/* submit button */}
         <div className="my-3">
@@ -261,7 +270,7 @@ const CreateBlog = () => {
       {isModalOpen && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-          onClick={closeModal}
+          // onClick={closeModal}
         >
           <div className="bg-white p-8 rounded-lg">
             <h2 className="text-2xl font-bold mb-4">
