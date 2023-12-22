@@ -16,7 +16,7 @@ const Admin = () => {
     <Dashboard>
       {action === "overview" && <Overview />}
       {action === "manage-users" && <ManageUsers />}
-      {action === "manage-blog" && <MangeBlog />}
+      {action === "manage-blogs" && <MangeBlog />}
       {action === "manage-categories" && <ManageCategories />}
       
     </Dashboard>

@@ -1,6 +1,18 @@
 import { FaSort } from "react-icons/fa";
+import useBlogStore from "../../../../store/blogStore";
+import { useEffect } from "react";
 
-const RecentBlogs: React.FC = () => (
+const RecentBlogs: React.FC = () => {
+  const blogs = useBlogStore((state)=> state.blogs)
+  // console.log(blogs)
+
+  // getAllBlog function
+  const getAllBlogs = useBlogStore((state) => state.getAllBlog);
+
+  useEffect(() => {
+    getAllBlogs();
+  }, [getAllBlogs]);
+return (
   <div className=" flex flex-col my-2">
     {/* heading */}
     <h2 className=" font-semibold  text-xl">Recent Blogs</h2>
@@ -67,11 +79,12 @@ const RecentBlogs: React.FC = () => (
 
         <tbody>
           {/* 1st row */}
-          <tr className=" border-b border-Zomp">
-            <td className="py-4 px-4">Hot to be Billionare</td>
-            <td className="py-2 px-4">Achinta Sharma</td>
-            <td className="py-2 px-4">20 nov 2023</td>
-            <td className="py-2 px-4">Web Development</td>
+          {blogs.map((blog)=>(
+            <tr className=" border-b border-Zomp">
+            <td className="py-4 px-4">{blog.title}</td>
+            <td className="py-2 px-4">{blog.author}</td>
+            <td className="py-2 px-4">{blog.date}</td>
+            <td className="py-2 px-4">{blog.category}</td>
             <td className="py-2 px-4 ">
               <div className="flex gap-2">
                 <button
@@ -89,8 +102,10 @@ const RecentBlogs: React.FC = () => (
               </div>
             </td>
           </tr>
+          ))}
+          
           {/* 2nd row */}
-          <tr className=" border-b border-Zomp">
+          {/* <tr className=" border-b border-Zomp">
             <td className="py-4 px-4">Become WebDevelooper</td>
             <td className="py-2 px-4">Achinta Sharma</td>
             <td className="py-2 px-4">20 nov 2023</td>
@@ -111,10 +126,10 @@ const RecentBlogs: React.FC = () => (
                 </button>
               </div>
             </td>
-          </tr>
+          </tr> */}
 
           {/* 3rd row */}
-          <tr className=" border-b border-Zomp">
+          {/* <tr className=" border-b border-Zomp">
             <td className="py-4 px-4">Music Heals everything</td>
             <td className="py-2 px-4">Fujaiel</td>
             <td className="py-2 px-4">20 nov 2023</td>
@@ -135,7 +150,8 @@ const RecentBlogs: React.FC = () => (
                 </button>
               </div>
             </td>
-          </tr>
+          </tr> */}
+
         </tbody>
       </table>
       {/* See more */}
@@ -150,6 +166,6 @@ const RecentBlogs: React.FC = () => (
 
     </div>
   </div>
-);
+);}
 
 export default RecentBlogs;

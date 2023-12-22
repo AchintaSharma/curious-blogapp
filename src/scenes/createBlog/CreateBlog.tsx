@@ -159,7 +159,7 @@ const CreateBlog = () => {
   };
 
   return (
-    <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300  shadow-lg bg-white my-4">
+    <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300 shadow-lg bg-white my-4">
       <h1 className=" mb-4 font-bold text-2xl text-Zomp">Create Blog</h1>
 
       {/* form starts here */}
@@ -204,8 +204,8 @@ const CreateBlog = () => {
             rows={6}
             className={`w-full  pl-4 pt-4 border ${
               contentValid ? "border-Zomp" : "border-red-600"
-            } rounded-lg`}
-            style={{ resize: "none" }}
+            } rounded-lg resize-none`}
+            
             name="content"
             value={formData.content}
             onChange={handleChange}
