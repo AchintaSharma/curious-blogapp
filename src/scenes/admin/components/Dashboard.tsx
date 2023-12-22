@@ -21,10 +21,10 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
       {/* Overall grid container */}
       <div className="grid grid-cols-12  gap-4 border">
         {/* Left overall grid col */}
-        <div className="col-span-3">
-          <div className="flex flex-col">
+        <aside className="col-span-3">
+          <div className="flex flex-col h-full">
             {/* Profile box */}
-            <div className="flex items-center bg-Zomp shadow-md rounded-lg gap-2 h-24 px-4">
+            <div className="flex items-center bg-Zomp shadow-md rounded-lg gap-2 h-32 px-4">
               <div>
                 <img src={Profile1} alt="profile" />
               </div>
@@ -34,7 +34,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
               </div>
             </div>
             {/* menu box */}
-            <div className="flex flex-col gap-8 mt-8 bg-LightSilver shadow-md h-80 px-4 py-8 rounded-lg">
+            <div className="flex flex-col gap-8 mt-8 bg-LightSilver shadow-md h-full px-4 py-8 rounded-lg">
               {/* first link */}
               <div className="flex items-center gap-4">
                 {/* icon */}
@@ -126,7 +126,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
               </div>
             </div>
           </div>
-        </div>
+        </aside>
 
         {/* Right overall grid col */}
         <div className="col-span-9 border">

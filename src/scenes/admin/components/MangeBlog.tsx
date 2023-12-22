@@ -1,12 +1,17 @@
 import { IoSearchOutline } from "react-icons/io5";
 import { FaSort } from "react-icons/fa";
 import useBlogStore from "../../../store/blogStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const MangeBlog = () => {
   
   const blogs = useBlogStore((state)=> state.blogs)
   // console.log(blogs)
+
+  // sort by date
+  const sortBlogs = [...blogs].sort(
+    (a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
 
   // getAllBlog function
   const getAllBlogs = useBlogStore((state) => state.getAllBlog);
@@ -14,6 +19,14 @@ const MangeBlog = () => {
   useEffect(() => {
     getAllBlogs();
   }, [getAllBlogs]);
+
+  // see more state
+  const [visibleRows, setVisibleRows] = useState(3);
+
+  // see more function
+  const showMoreRows = () => {
+    setVisibleRows((prevVisibleRows) => prevVisibleRows + 3);
+  };
 
   return (
     <div className=" max-w-screen-lg mx-auto my-2 px-4">
@@ -83,7 +96,7 @@ const MangeBlog = () => {
 
         <tbody>
           {/* 1st row */}
-            {blogs.map((blog)=>(
+            {sortBlogs.slice(0, visibleRows).map((blog)=>(
               <tr className=" border-b border-Zomp">
               <td className="py-4 px-4">
                 {blog.title}
@@ -172,11 +185,14 @@ const MangeBlog = () => {
         </tbody>
       </table>
       {/* See more */}
-      <div className="flex justify-center">
-        <button type="button" className=" text-Zomp px-2 py-1 rounded-lg">
+      {visibleRows<blogs.length &&(
+        <div className="flex justify-center">
+        <button type="button" className=" text-Zomp px-2 py-1 rounded-lg" onClick={showMoreRows}>
           See more
         </button>
       </div>
+      )}
+      
     </div>
   );
 };
