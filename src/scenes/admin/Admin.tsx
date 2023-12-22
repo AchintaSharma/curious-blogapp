@@ -9,15 +9,18 @@ import Overview from "./components/Overview.tsx"
 
 const Admin = () => {
   const {action} = useParams();
+
+  // default action
+  const defaultAction = action || "overview";
   
   return(
     <div>
     {/* // eslint-disable-next-line react/no-children-prop, react/no-children-prop */}
     <Dashboard>
-      {action === "overview" && <Overview />}
-      {action === "manage-users" && <ManageUsers />}
-      {action === "manage-blogs" && <MangeBlog />}
-      {action === "manage-categories" && <ManageCategories />}
+      {defaultAction === "overview" && <Overview />}
+      {defaultAction === "manage-users" && <ManageUsers />}
+      {defaultAction === "manage-blogs" && <MangeBlog />}
+      {defaultAction === "manage-categories" && <ManageCategories />}
       
     </Dashboard>
   </div>
