@@ -4,14 +4,22 @@ import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { Profile1 } from "../../../assets/svgs/svg.ts";
 import { Blog } from "../../../types/blog.ts";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 type BlogListProps = {
   blogs: Blog[];
 };
 
-const MainCard: React.FC<BlogListProps> = ({ blogs }) => (
+const MainCard: React.FC<BlogListProps> = ({ blogs }) => {
+  const [visibleRows, setVisibleRows] = useState(5);
+
+  // see more function
+  const showMoreRows = () => {
+    setVisibleRows((prevVisibleRows) => prevVisibleRows + 3);
+  };
+return(
   <>
-    {blogs.map((blog) => (
+    {blogs.slice(0, visibleRows).map((blog) => (
       <Link key={blog.id} to={`/post/${blog.id}`}>
         <div
           key={blog.id}
@@ -68,9 +76,18 @@ const MainCard: React.FC<BlogListProps> = ({ blogs }) => (
             </div>
           </div>
         </div>
+      
       </Link>
     ))}
+      {/* See more */}
+      {visibleRows<blogs.length &&(
+        <div className="flex justify-center">
+        <button type="button" className=" text-Zomp px-2 py-1 rounded-lg" onClick={showMoreRows}>
+          See more
+        </button>
+      </div>
+      )}
   </>
-);
+);}
 
 export default MainCard;

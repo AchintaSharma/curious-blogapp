@@ -10,6 +10,11 @@ const Home = () => {
   // Array of blogs
   const blogs = useBlogStore((state) => state.blogs);
 
+   // sort by date
+   const sortBlogs = [...blogs].sort(
+    (a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   // getAllBlog function
   const getAllBlogs = useBlogStore((state) => state.getAllBlog);
 
@@ -26,10 +31,7 @@ const Home = () => {
     });
   });
 
-  // sort by date
-  const sortBlogs = [...blogs].sort(
-    (a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+ 
 
   return (
     <div className="max-w-screen-xl mx-auto sm:mx-4 md:mx-8 lg:mx-16 xl:mx-24 my-4">
