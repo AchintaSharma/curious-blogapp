@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Blog } from "../../types/blog";
 import useBlogStore from "../../store/blogStore";
 import { useNavigate } from "react-router-dom";
+import useCategoryStore from "../../store/categoryStore";
 
 // Function to convert image to base64
 const convertImageToBase64 = (file: File): Promise<string> => {
@@ -112,11 +113,6 @@ const CreateBlog = () => {
     setContentValid(isContentValid);
 
     try {
-      // if (isFile(formData.thumbnail)) {
-      //   const base64String = await convertImageToBase64(formData.thumbnail);
-      //   setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
-      // }
-
       handleImageUpload();
 
       // adding blog
@@ -150,13 +146,19 @@ const CreateBlog = () => {
   // const {id} = useBlogStore((state)=>state.addBlog)
   // const [createdBlog, setCreatedBlog] = useState<Blog | null>();
   const currentBlogId = useBlogStore((state) => state.currentBlogId);
-  console.log(currentBlogId);
+  // console.log(currentBlogId);
 
   // View post click
   const handleViewPostClick = () => {
     closeModal();
     navigate(`/post/${currentBlogId}`);
   };
+
+  // add category
+  const categories = useCategoryStore((state) => {
+    console.log("Categories updated:", state.categories);
+    return state.categories;
+  });
 
   return (
     <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300 shadow-lg bg-white my-4">
@@ -191,8 +193,11 @@ const CreateBlog = () => {
           required
         >
           <option value="">Category</option>
-          <option value="second">second</option>
-          <option value="third">third</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
 
         {/* content area */}
@@ -205,7 +210,6 @@ const CreateBlog = () => {
             className={`w-full  pl-4 pt-4 border ${
               contentValid ? "border-Zomp" : "border-red-600"
             } rounded-lg resize-none`}
-            
             name="content"
             value={formData.content}
             onChange={handleChange}
