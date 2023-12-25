@@ -12,8 +12,8 @@ type CategoryStore = {
   categories: Category[];
   addCategory: (category: string) => void;
   getCategory: () => void;
-  // updateCategory: (id: number, category: string) => void;
-  // deleteCategory:(id: number)=>void;
+  updateCategory: (id: number, category: string) => void;
+  deleteCategory: (id: number) => void;
 };
 
 const useCategoryStore = create<CategoryStore>((set) => {
@@ -48,30 +48,41 @@ const useCategoryStore = create<CategoryStore>((set) => {
         return { categories };
       });
     },
-    // updateCategory: async (id: string, category: string) => {
-    //   try {
-    //     await axios.put(`${BaseUrl}/categories/${id}`, category);
-    //     set((state) => {
-    //       const updatedCategories = [...state.categories];
-    //       updatedCategories[id] = category;
-
-    //     });
-    //   } catch (error) {
-    //     console.error(error);
-    //     throw error;
-    //   }
-    // },
-    // deleteCategory: async (id: string) => {
-    //   try {
-    //     await axios.delete(`${BaseUrl}/categories/${id}`);
-    //     set((state)=>{
-    //       // return {...state,  categories:state.categories.filter((c)=> c.id !==id)}
-    //     })
-    //   } catch (error) {
-    //     console.error(error);
-    //     throw error;
-    //   }
-    // }
+    updateCategory: async (id: number, updateCategory: string) => {
+      try {
+        const response = await axios.put(`${BaseUrl}/categories/${id}`, {
+          category: updateCategory,
+        });
+        const updatedCategoryData: Category = response.data;
+        set((state) => {
+          return {
+            categories: state.categories.map((c) =>
+              c.id === id
+                ? { ...c, category: updatedCategoryData.category }
+                : c,
+            ),
+          };
+        });
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    deleteCategory: async (id: number) => {
+      try {
+        await axios.delete(`${BaseUrl}/categories/${id}`);
+        set((state) => {
+          return {
+            categories: state.categories.filter(
+              (category) => category.id !== id,
+            ),
+          };
+        });
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
   };
 });
 
