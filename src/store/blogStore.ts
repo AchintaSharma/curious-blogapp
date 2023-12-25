@@ -20,11 +20,11 @@ const generateUniqueId = () => {
 // zustand functions
 type State = {
   blogs: Blog[];
+  currentBlogId: string | null;
   addBlog: (blog: Blog) => void;
   deleteBlog: (id: string) => void;
   updateBlog: (id: string, blog: Blog) => void;
   getAllBlog: () => void;
-  currentBlogId: string | null;
 };
 
 const useBlogStore = create<State>((set) => {

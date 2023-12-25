@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import { Blog } from "../../types/blog";
-import useBlogStore from "../../store/blogStore";
 import { useNavigate } from "react-router-dom";
-import useCategoryStore from "../../store/categoryStore";
+import React, { useState } from "react";
+import { Blog } from "../../types/blog.ts";
+import useBlogStore from "../../store/blogStore.ts";
+import useCategoryStore from "../../store/categoryStore.ts";
 
 // Function to convert image to base64
-const convertImageToBase64 = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
+const convertImageToBase64 = (file: File): Promise<string> =>
+  new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result as string);
     reader.onerror = (error) => reject(error);
     reader.readAsDataURL(file);
   });
-};
 
 const CreateBlog = () => {
   // zustand functions
@@ -37,17 +36,22 @@ const CreateBlog = () => {
     >
   ) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((prevData) => {
+      return { ...prevData, [name]: value };
+    });
 
     // validate input field and update
     switch (name) {
       case "title":
+        // eslint-disable-next-line no-use-before-define
         setTitleValid(value.trim() !== "");
         break;
       case "category":
+        // eslint-disable-next-line no-use-before-define
         setCategoryValid(value !== "");
         break;
       case "content":
+        // eslint-disable-next-line no-use-before-define
         setContentValid(value.trim() !== "");
         break;
       default:
@@ -68,9 +72,7 @@ const CreateBlog = () => {
   };
 
   // changing type to any
-  const isFile = (value: any): value is File => {
-    return value instanceof File;
-  };
+  const isFile = (value: unknown): value is File => value instanceof File;
 
   // Image converter
   // state for image  file
@@ -83,7 +85,9 @@ const CreateBlog = () => {
 
     if (file) {
       const base64String = await convertImageToBase64(file);
-      setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+      setFormData((prevData) => {
+        return { ...prevData, thumbnail: base64String };
+      });
     }
   };
 
@@ -95,7 +99,9 @@ const CreateBlog = () => {
   const handleImageUpload = async () => {
     if (isFile(formData.thumbnail)) {
       const base64String = await convertImageToBase64(formData.thumbnail);
-      setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+      setFormData((prevData) => {
+        return { ...prevData, thumbnail: base64String };
+      });
     }
   };
 
@@ -155,10 +161,7 @@ const CreateBlog = () => {
   };
 
   // add category
-  const categories = useCategoryStore((state) => {
-    console.log("Categories updated:", state.categories);
-    return state.categories;
-  });
+  const categories = useCategoryStore((state) => state.categories);
 
   return (
     <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300 shadow-lg bg-white my-4">
@@ -194,8 +197,8 @@ const CreateBlog = () => {
         >
           <option value="">Category</option>
           {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
+            <option key={category.id} value={category.category}>
+              {category.category}
             </option>
           ))}
         </select>
@@ -282,12 +285,14 @@ const CreateBlog = () => {
             </h2>
             <div className="flex justify-between">
               <button
+                type="button"
                 className="bg-SpaceCadet text-white px-4 py-2 rounded-lg mr-2"
                 onClick={handleHomeClick}
               >
                 Home
               </button>
               <button
+                type="button"
                 className="bg-PurpleNavy text-white px-4 py-2 rounded-lg"
                 onClick={handleViewPostClick}
               >

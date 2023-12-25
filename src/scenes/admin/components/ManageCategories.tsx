@@ -3,8 +3,10 @@ import { FaSort } from "react-icons/fa";
 import PrimaryButton from "../../../components/common/buttons/PrimaryButton.tsx";
 import useCategoryStore from "../../../store/categoryStore.ts";
 
+
 const ManageCategories = () => {
   const { categories, addCategory } = useCategoryStore();
+  
   const [newCategory, setNewCategory] = useState("");
 
   const handleAddCategory = () => {
@@ -44,8 +46,8 @@ const ManageCategories = () => {
 
             <tbody>
               {categories.map((category) => (
-                <tr className=" border-b border-Zomp" key={category}>
-                  <td className="py-4 px-4">{category}</td>
+                <tr className=" border-b border-Zomp" key={category.id}>
+                  <td className="py-4 px-4">{category.category}</td>
                   <td className="py-2 px-4 ">
                     <div className="flex gap-2">
                       <button
