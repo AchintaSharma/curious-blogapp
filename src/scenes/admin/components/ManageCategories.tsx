@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSort } from "react-icons/fa";
 import PrimaryButton from "../../../components/common/buttons/PrimaryButton.tsx";
 import useCategoryStore from "../../../store/categoryStore.ts";
 
 
 const ManageCategories = () => {
-  const { categories, addCategory } = useCategoryStore();
+  const { categories, addCategory, getCategory } = useCategoryStore();
   
   const [newCategory, setNewCategory] = useState("");
 
@@ -13,6 +13,13 @@ const ManageCategories = () => {
     addCategory(newCategory);
     setNewCategory("");
   };
+
+  // to view
+  useEffect(() => {
+    // Fetch initial categories when the component mounts
+    getCategory();
+  }, [getCategory]);
+
   return (
     <div className="max-w-screen-lg mx-auto my-2">
       <div className=" grid grid-flow-col gap-14">

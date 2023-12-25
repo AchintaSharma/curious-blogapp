@@ -2,7 +2,7 @@ import axios from "axios";
 import { create } from "zustand";
 import BaseUrl from "../api/api.ts";
 
-type Category = {
+export type Category = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   id: number;
   category: string;
