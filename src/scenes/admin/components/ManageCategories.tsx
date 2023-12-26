@@ -11,9 +11,11 @@ const ManageCategories = () => {
     updateCategory,
     deleteCategory,
   } = useCategoryStore();
-  // sort by date
+  // sort by id
   const sortCategories = [...categories].sort(
-    (a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a: any, b: any) =>
+      // new Date(b.date).getTime() - new Date(a.date).getTime()
+      b.id - a.id
   );
 
   // see more visibility state and fucntions
@@ -120,7 +122,6 @@ const ManageCategories = () => {
                       <button
                         type="button"
                         className=" bg-LightSilver hover:bg-SpaceCadet hover:text-white px-2 py-1 rounded-lg"
-
                         // onClick={() =>
                         //   setUpdatedCategory({
                         //     id: category.id,
@@ -171,7 +172,6 @@ const ManageCategories = () => {
               className=" border border-Zomp rounded-lg bg-transparent h-12 px-4 mb-4 w-full"
               onChange={(e) => setNewCategory(e.target.value)}
               value={newCategory}
-
             />
           </div>
           <PrimaryButton onClick={handleAddCategory}>

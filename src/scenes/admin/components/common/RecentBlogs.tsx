@@ -1,6 +1,6 @@
-import { FaSort } from "react-icons/fa";
-import useBlogStore from "../../../../store/blogStore";
 import { useEffect, useState } from "react";
+import { FaSort } from "react-icons/fa";
+import useBlogStore from "../../../../store/blogStore.ts";
 
 const RecentBlogs: React.FC = () => {
   const blogs = useBlogStore((state) => state.blogs);
@@ -114,6 +114,7 @@ const RecentBlogs: React.FC = () => {
           <tbody>
             {/* 1st row */}
             {sortBlogs.slice(0, visibleRows).map((blog) => (
+              // eslint-disable-next-line react/jsx-key
               <tr className=" border-b border-Zomp">
                 <td className="py-4 px-4">{blog.title}</td>
                 <td className="py-2 px-4">{blog.author}</td>

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Blog } from "../../types/blog.ts";
 import useBlogStore from "../../store/blogStore.ts";
 import useCategoryStore from "../../store/categoryStore.ts";
@@ -162,6 +162,17 @@ const CreateBlog = () => {
 
   // add category
   const categories = useCategoryStore((state) => state.categories);
+  const sortCategories = [...categories].sort(
+    (a: any, b: any) =>
+      // new Date(b.date).getTime() - new Date(a.date).getTime()
+      b.id - a.id
+  );
+  const getCategory = useCategoryStore((state)=>state.getCategory)
+
+  useEffect(() => {
+    // Fetch initial categories when the component mounts
+    getCategory();
+  }, [getCategory]);
 
   return (
     <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300 shadow-lg bg-white my-4">
@@ -196,7 +207,7 @@ const CreateBlog = () => {
           required
         >
           <option value="">Category</option>
-          {categories.map((category) => (
+          {sortCategories.map((category) => (
             <option key={category.id} value={category.category}>
               {category.category}
             </option>

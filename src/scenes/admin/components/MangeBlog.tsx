@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaSort } from "react-icons/fa";
-import useBlogStore from "../../../store/blogStore";
-import { useEffect, useState } from "react";
+import useBlogStore from "../../../store/blogStore.ts";
 
 const MangeBlog = () => {
   
@@ -27,6 +27,18 @@ const MangeBlog = () => {
   const showMoreRows = () => {
     setVisibleRows((prevVisibleRows) => prevVisibleRows + 3);
   };
+
+  // update blog state
+  
+
+  // delete blog
+  const deleteBlog = useBlogStore((state)=> state.deleteBlog)
+
+  // delete function
+
+  const handleDeleteBlot =(id:string)=>{
+    deleteBlog(id)
+  }
 
   return (
     <div className=" max-w-screen-lg mx-auto my-2 px-4">
@@ -97,6 +109,7 @@ const MangeBlog = () => {
         <tbody>
           {/* 1st row */}
             {sortBlogs.slice(0, visibleRows).map((blog)=>(
+              // eslint-disable-next-line react/jsx-key
               <tr className=" border-b border-Zomp">
               <td className="py-4 px-4">
                 {blog.title}
@@ -125,6 +138,7 @@ const MangeBlog = () => {
                   <button
                     type="button"
                     className=" bg-red-600 text-white hover:bg-SpaceCadet px-2 py-1 rounded-lg"
+                    onClick={()=>handleDeleteBlot(blog.id)}
                   >
                     Delete
                   </button>
