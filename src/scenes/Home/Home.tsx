@@ -12,7 +12,9 @@ const Home = () => {
 
    // sort by date
    const sortBlogs = [...blogs].sort(
-    (a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a: any, b: any) => 
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+    // b.id - a.id
   );
 
   // getAllBlog function

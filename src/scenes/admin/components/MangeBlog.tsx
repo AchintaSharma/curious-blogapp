@@ -10,11 +10,27 @@ const MangeBlog = () => {
 
   // sort by date
   const sortBlogs = [...blogs].sort(
-    (a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a: any, b: any) => 
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+    // b.id - a.id
   );
 
   // getAllBlog function
   const getAllBlogs = useBlogStore((state) => state.getAllBlog);
+
+  // const [editMode, setEditMode] = useState(false);
+  // const [editCategoryId, setEditCategoryId] = useState<number | null>(null);
+
+  // const handleEditCategory = (categoryId: number) => {
+  //   const categoryToEdit = categories.find(
+  //     (category) => category.id === categoryId
+  //   );
+  //   if (categoryToEdit) {
+  //     setNewCategory(categoryToEdit.category);
+  //     setEditMode(true);
+  //     setEditCategoryId(categoryId);
+  //   }
+  // };
 
   useEffect(() => {
     getAllBlogs();
