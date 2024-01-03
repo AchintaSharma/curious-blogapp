@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { Blog } from "../../types/blog";
-import useBlogStore from "../../store/blogStore";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Blog } from "../../types/blog.ts";
+import useBlogStore from "../../store/blogStore.ts";
+import useCategoryStore from "../../store/categoryStore.ts";
 
 // Function to convert image to base64
-const convertImageToBase64 = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
+const convertImageToBase64 = (file: File): Promise<string> =>
+  new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result as string);
     reader.onerror = (error) => reject(error);
     reader.readAsDataURL(file);
   });
-};
 
 const CreateBlog = () => {
   // zustand functions
@@ -36,17 +36,22 @@ const CreateBlog = () => {
     >
   ) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((prevData) => {
+      return { ...prevData, [name]: value };
+    });
 
     // validate input field and update
     switch (name) {
       case "title":
+        // eslint-disable-next-line no-use-before-define
         setTitleValid(value.trim() !== "");
         break;
       case "category":
+        // eslint-disable-next-line no-use-before-define
         setCategoryValid(value !== "");
         break;
       case "content":
+        // eslint-disable-next-line no-use-before-define
         setContentValid(value.trim() !== "");
         break;
       default:
@@ -67,9 +72,7 @@ const CreateBlog = () => {
   };
 
   // changing type to any
-  const isFile = (value: any): value is File => {
-    return value instanceof File;
-  };
+  const isFile = (value: unknown): value is File => value instanceof File;
 
   // Image converter
   // state for image  file
@@ -82,7 +85,9 @@ const CreateBlog = () => {
 
     if (file) {
       const base64String = await convertImageToBase64(file);
-      setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+      setFormData((prevData) => {
+        return { ...prevData, thumbnail: base64String };
+      });
     }
   };
 
@@ -94,7 +99,9 @@ const CreateBlog = () => {
   const handleImageUpload = async () => {
     if (isFile(formData.thumbnail)) {
       const base64String = await convertImageToBase64(formData.thumbnail);
-      setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
+      setFormData((prevData) => {
+        return { ...prevData, thumbnail: base64String };
+      });
     }
   };
 
@@ -112,11 +119,6 @@ const CreateBlog = () => {
     setContentValid(isContentValid);
 
     try {
-      // if (isFile(formData.thumbnail)) {
-      //   const base64String = await convertImageToBase64(formData.thumbnail);
-      //   setFormData((prevData) => ({ ...prevData, thumbnail: base64String }));
-      // }
-
       handleImageUpload();
 
       // adding blog
@@ -150,7 +152,7 @@ const CreateBlog = () => {
   // const {id} = useBlogStore((state)=>state.addBlog)
   // const [createdBlog, setCreatedBlog] = useState<Blog | null>();
   const currentBlogId = useBlogStore((state) => state.currentBlogId);
-  console.log(currentBlogId);
+  // console.log(currentBlogId);
 
   // View post click
   const handleViewPostClick = () => {
@@ -158,8 +160,22 @@ const CreateBlog = () => {
     navigate(`/post/${currentBlogId}`);
   };
 
+  // add category
+  const categories = useCategoryStore((state) => state.categories);
+  const sortCategories = [...categories].sort(
+    (a: any, b: any) =>
+      // new Date(b.date).getTime() - new Date(a.date).getTime()
+      b.id - a.id
+  );
+  const getCategory = useCategoryStore((state)=>state.getCategory)
+
+  useEffect(() => {
+    // Fetch initial categories when the component mounts
+    getCategory();
+  }, [getCategory]);
+
   return (
-    <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300  shadow-lg bg-white my-4">
+    <div className=" max-w-screen-sm  py-8 px-12 mx-auto  rounded-xl border border-gray-300 shadow-lg bg-white my-4">
       <h1 className=" mb-4 font-bold text-2xl text-Zomp">Create Blog</h1>
 
       {/* form starts here */}
@@ -191,8 +207,11 @@ const CreateBlog = () => {
           required
         >
           <option value="">Category</option>
-          <option value="second">second</option>
-          <option value="third">third</option>
+          {sortCategories.map((category) => (
+            <option key={category.id} value={category.category}>
+              {category.category}
+            </option>
+          ))}
         </select>
 
         {/* content area */}
@@ -204,8 +223,7 @@ const CreateBlog = () => {
             rows={6}
             className={`w-full  pl-4 pt-4 border ${
               contentValid ? "border-Zomp" : "border-red-600"
-            } rounded-lg`}
-            style={{ resize: "none" }}
+            } rounded-lg resize-none`}
             name="content"
             value={formData.content}
             onChange={handleChange}
@@ -278,12 +296,14 @@ const CreateBlog = () => {
             </h2>
             <div className="flex justify-between">
               <button
+                type="button"
                 className="bg-SpaceCadet text-white px-4 py-2 rounded-lg mr-2"
                 onClick={handleHomeClick}
               >
                 Home
               </button>
               <button
+                type="button"
                 className="bg-PurpleNavy text-white px-4 py-2 rounded-lg"
                 onClick={handleViewPostClick}
               >

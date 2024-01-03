@@ -53,8 +53,14 @@ const App = () => {
       element: <Dashboard children={undefined} />,
     },
     {
-      // path: "/admin",      
+      path: "/admin",      
       element: <Admin />,
+
+      // children: [
+      //   { path: "/", element: <Dashboard children={undefined} /> },
+      //   { path: "/overview", element: <Overview /> },
+      //   // Add other admin-related routes as needed
+      // ],
     },
     {
       path:"/admin/:action",
@@ -69,15 +75,15 @@ const App = () => {
       element: <MangeBlog />,
     },
     {
-      path: "manage-users",
+      path: "/manage-users",
       element: <ManageUsers />,
     },
     {
-      path: "manage-category",
+      path: "/manage-category",
       element: <ManageCategories />,
     },
     {
-      path: "ourStory",
+      path: "/ourStory",
       element: <OurStory />,
     },{
       path: "/help",

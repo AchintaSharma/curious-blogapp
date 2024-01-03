@@ -1,10 +1,12 @@
-// import Dashboard from "./Dashboard.tsx"
-import RecentBlogs from "./common/RecentBlogs.tsx"
+
+import MangeBlog from "./MangeBlog.tsx"
+
 
 
 const Overview: React.FC = () => (
     <div>
-        <RecentBlogs />
+        {/* <RecentBlogs /> */}
+        <MangeBlog />
     </div>
   )
 
